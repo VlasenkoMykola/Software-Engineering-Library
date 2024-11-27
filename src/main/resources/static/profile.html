@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Налаштування облікового запису - Книжковий рай</title>
+    <link rel="stylesheet" href="profile-styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-content">
+        <a href="/" class="logo">
+          <img src="/images/logo.png" alt="Книжковий рай лого" />
+          <span>Книжковий рай</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Головна</a>
+          <a href="/catalog.html">Каталог</a>
+          <a href="/login.html">Увійти</a>
+          <a href="/signup.html" class="register-btn">Реєстрація</a>
+          <div class="user-profile">
+            <img src="/images/avatar.png" alt="User" />
+            <span>Alina</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="profile-container">
+      <div class="profile-card">
+        <h1>Налаштування облікового запису</h1>
+
+        <div class="profile-header">
+          <div class="profile-photo-section">
+            <div class="profile-photo">
+              <img src="/images/avatar.png" alt="Profile" />
+              <label for="photo-upload" class="photo-upload-label">
+                Загрузити фото
+              </label>
+              <input type="file" id="photo-upload" hidden />
+            </div>
+          </div>
+          <div class="reading-stats">
+            <div class="stat-card">
+              <span class="stat-icon">📚</span>
+              <span class="stat-number">120</span>
+              <span class="stat-label">Прочитано</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="profile-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Ім'я</label>
+              <input type="text" value="Amy" />
+            </div>
+            <div class="form-group">
+              <label>Пошта</label>
+              <input type="email" value="alina-gmail@.com" />
+            </div>
+            <div class="form-group">
+              <label>Реєстраційний номер</label>
+              <input type="text" value="03928323" />
+            </div>
+            <div class="form-group">
+              <label>Телефон</label>
+              <input type="tel" value="+380 0983718382" />
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Про мене</label>
+            <textarea rows="4" placeholder="я..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-button">
+              Оновити профіль
+            </button>
+            <button type="button" class="secondary-button">Скинути</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

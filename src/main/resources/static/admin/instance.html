@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Управління екземплярами</title>
+    <link rel="stylesheet" href="management.css" />
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+
+      .modal-content {
+        position: relative;
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        width: 80%;
+        max-width: 500px;
+        border-radius: 8px;
+      }
+
+      .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .button-container button {
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .modal-add-btn {
+        background-color: #f26522;
+        color: white;
+      }
+
+      .modal-cancel-btn {
+        background-color: #4a4a4a;
+        color: white;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 5px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 15px;
+      }
+
+      .form-row .form-group {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="/" class="logo">
+          <img src="/images/logo.png" alt="Книжковий рай" />
+          <span>Книжковий рай</span>
+        </a>
+        <div class="nav-links">
+          <a href="/admin/dashboard.html">Аналітика</a>
+          <a href="/admin/borrowed-books.html">Каталог</a>
+          <a href="/admin/book-management.html" class="active">Книги</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div class="datetime">
+          <span>12:29 PM</span>
+          <span>Жов 19, 2024</span>
+        </div>
+        <div class="user-profile">
+          <img src="/images/avatar.png" alt="User" />
+          <span>Alina</span>
+          <span class="role">Admin</span>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="header">
+        <h1>Управління екземплярами</h1>
+        <div class="actions">
+          <div class="search">
+            <input type="text" placeholder="Шукати по назві" />
+          </div>
+          <button class="add-btn" onclick="openModal('addModal')">
+            Добавити книгу
+          </button>
+        </div>
+      </div>
+      <h3>Загублене місто Z</h3>
+      <br />
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Стан</th>
+              <th>Ким</th>
+              <th>Коли</th>
+              <th>До якої дати</th>
+              <th>Дії</th>
+            </tr>
+          </thead>
+          <tbody id="bookTableBody">
+            <tr>
+              <td>101451548</td>
+              <td>виданий</td>
+              <td>Тест</td>
+              <td>20.02.2005</td>
+              <td>22.02.2001</td>
+              <td>
+                <button class="action-btn" onclick="openModal('editModal')">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M17.8314 0L14.9138 2.91762L20.749 8.75285L23.6666 5.83524L17.8314 0ZM11.9962 5.83524L0.325684 17.5057V23.3409H6.16092L17.8314 11.6705L11.9962 5.83524Z"
+                      fill="black"
+                    />
+                  </svg>
+                </button>
+                <button class="action-btn" onclick="confirmDelete('101451548')">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                      fill="black"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+            <!-- Rest of your table rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <button class="pagination-dot active"></button>
+        <button class="pagination-dot"></button>
+        <button class="pagination-dot"></button>
+        <button class="pagination-dot"></button>
+      </div>
+    </main>
+
+    <!-- Add Book Modal -->
+    <div id="addModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('addModal')">&times;</span>
+        <h2>Додати екземпляр</h2>
+        <form id="addBookForm">
+          <div class="form-group">
+            <input type="text" placeholder="Назва" required />
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Мова" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" placeholder="Тип" required />
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Інвентарний номер" required />
+            </div>
+          </div>
+          <div class="button-container">
+            <button
+              type="button"
+              class="modal-cancel-btn"
+              onclick="closeModal('addModal')"
+            >
+              Скасувати
+            </button>
+            <button type="submit" class="modal-add-btn">Добавити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Book Modal -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('editModal')">&times;</span>
+        <h2>Оновити екземпляр</h2>
+        <form id="editBookForm">
+          <div class="form-group">
+            <input type="text" placeholder="Назва" required />
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Мова" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" placeholder="Тип" required />
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Інвентарний номер" required />
+            </div>
+          </div>
+          <div class="button-container">
+            <button
+              type="button"
+              class="modal-cancel-btn"
+              onclick="closeModal('editModal')"
+            >
+              Скасувати
+            </button>
+            <button type="submit" class="modal-add-btn">Редагувати</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="confirmDeleteModal" class="modal confirm-delete-modal">
+      <div class="modal-content">
+        <h2>Підтвердження видалення</h2>
+        <p>Ви впевнені, що хочете видалити цей екземпляр?</p>
+        <div class="button-container">
+          <button
+            type="button"
+            class="modal-cancel-btn"
+            onclick="closeModal('confirmDeleteModal')"
+          >
+            Скасувати
+          </button>
+          <button type="button" class="delete-btn" onclick="deleteBook()">
+            Видалити
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      let bookToDelete = null;
+
+      // Previous modal functions remain the same
+      function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+      }
+
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+      }
+
+      // New delete functions
+      function confirmDelete(bookId) {
+        bookToDelete = bookId;
+        openModal("confirmDeleteModal");
+      }
+
+      function deleteBook() {
+        if (bookToDelete) {
+          console.log(`Deleting book with ID: ${bookToDelete}`);
+          // Here you would typically make an API call to delete the book
+          // After successful deletion, remove the row from the table
+          const row = document.querySelector(
+            `tr[data-book-id="${bookToDelete}"]`
+          );
+          if (row) {
+            row.remove();
+          }
+          // Reset the bookToDelete and close the modal
+          bookToDelete = null;
+          closeModal("confirmDeleteModal");
+        }
+      }
+
+      // Previous event listeners remain the same
+      document
+        .getElementById("addBookForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          console.log("Adding new book...");
+          closeModal("addModal");
+        });
+
+      document
+        .getElementById("editBookForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          console.log("Updating book...");
+          closeModal("editModal");
+        });
+
+      // Close modal when clicking outside
+      window.onclick = function (event) {
+        if (event.target.classList.contains("modal")) {
+          event.target.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>

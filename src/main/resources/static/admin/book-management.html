@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Форма керування книгою - Книжковий рай</title>
+    <link rel="stylesheet" href="management.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="/" class="logo">
+          <img src="/images/logo.png" alt="Книжковий рай" />
+          <span>Книжковий рай</span>
+        </a>
+        <div class="nav-links">
+          <a href="/admin/dashboard.html">Аналітика</a>
+          <a href="/admin/borrowed-books.html">Каталог</a>
+          <a href="/admin/book-management.html" class="active">Книги</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div class="datetime">
+          <span>12:29 PM</span>
+          <span>Жов 19, 2024</span>
+        </div>
+        <div class="user-profile">
+          <img src="/images/avatar.png" alt="User" />
+          <span>Alina</span>
+          <span class="role">Admin</span>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="header">
+        <h1>Управління книгами</h1>
+        <div class="actions">
+          <div class="search">
+            <input type="text" placeholder="Шукати по назві" />
+          </div>
+          <button class="add-btn" onclick="openModal('addModal')">
+            Добавити книгу
+          </button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Назва</th>
+              <th>Тип</th>
+              <th>Мова</th>
+              <th>Наявність</th>
+              <th>Дії</th>
+            </tr>
+          </thead>
+          <tbody id="bookTableBody">
+            <!-- Table content will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <button class="pagination-dot active"></button>
+        <button class="pagination-dot"></button>
+        <button class="pagination-dot"></button>
+        <button class="pagination-dot"></button>
+      </div>
+    </main>
+
+    <!-- Add Book Modal -->
+    <div id="addModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Добавити книгу</h2>
+          <button class="close-btn" onclick="closeModal('addModal')">
+            &times;
+          </button>
+        </div>
+        <form id="addBookForm">
+          <div class="form-group">
+            <input type="text" placeholder="Назва" required />
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Мова" required />
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Тип" />
+            <input type="number" placeholder="Кількість" />
+          </div>
+
+          <!-- Author Information -->
+          <div class="author-info">
+            <div class="form-group">
+              <input type="text" placeholder="Пове́не ім'я" />
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Опис" />
+            </div>
+            <button type="button" class="primary-btn">Додати автора</button>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">Добавити</button>
+            <button
+              type="button"
+              class="secondary-btn"
+              onclick="closeModal('addModal')"
+            >
+              Скасувати
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Book Modal -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Оновити книгу</h2>
+          <button class="close-btn" onclick="closeModal('editModal')">
+            &times;
+          </button>
+        </div>
+        <form id="editBookForm">
+          <div class="form-group">
+            <input type="text" placeholder="Назва" required />
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Мова" required />
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Тип" />
+            <input type="number" placeholder="Кількість" />
+          </div>
+
+          <!-- Author Information -->
+          <div class="author-info">
+            <button type="button" class="primary-btn">Додати автора</button>
+            <button type="button" class="primary-btn">Редагувати</button>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">Редагувати</button>
+            <button
+              type="button"
+              class="secondary-btn"
+              onclick="closeModal('editModal')"
+            >
+              Скасувати
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Підтвердження видалення</h2>
+          <button class="close-btn" onclick="closeModal('deleteModal')">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Ви впевнені, що бажаєте продовжити видалення вибраного запису?</p>
+        </div>
+        <div class="form-actions">
+          <button class="primary-btn" onclick="confirmDelete()">Так</button>
+          <button class="secondary-btn" onclick="closeModal('deleteModal')">
+            Скасувати
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="management.js"></script>
+  </body>
+</html>

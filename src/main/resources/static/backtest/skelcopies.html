@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copies - web skeleton report</title>
+</head>
+<body>
+  <h1>Find copies:</h1>
+  <form method="get" action="/backend/get_copies">
+    <label for="book_id">Book ID:</label>
+    <input type="text" name="book_id" /><br />
+    <label for="reader_id">Reader ID:</label>
+    <input type="text" name="reader_id" /><br />
+    <label for="status">Status:</label>
+    <select id="status" name="status" runat="server">
+	<option value=""></option>
+	<option value="free">free</option>
+	<option value="booked">booked</option>
+	<option value="given">given</option>
+	<option value="lost">lost</option>
+    </select><br />
+    <input type="submit" value="Go" />
+  </form>
+  <h1>Add Copy:</h1>
+  <form method="get" action="/backend/add_copy">
+    <label for="book_id">Book ID:</label>
+    <input type="text" name="book_id" /><br />
+    <input type="submit" value="Go" />
+  </form>
+  <h1>Delete Copy:</h1>
+  <form method="get" action="/backend/del_copy">
+    <label for="id">ID:</label>
+    <input type="text" name="id" /><br />
+    <input type="submit" value="Go" />
+  </form>
+  <p>
+  Json to Table here
+  </p>
+</body>
+</html>

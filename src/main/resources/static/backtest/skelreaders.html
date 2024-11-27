@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Readers - web skeleton report</title>
+</head>
+<body>
+  <h1>Find readers:</h1>
+  <form method="get" action="/backend/get_readers">
+    <label for="last_name">search readers by last name:</label>
+    <input type="text" name="last_name" /><br />
+    <label for="first_name">search readers by first name:</label>
+    <input type="text" name="first_name" /><br />
+    <label for="addresspattern">search readers by address pattern:</label>
+    <input type="text" name="addresspattern" /><br />
+    <label for="phone">search readers by phone:</label>
+    <input type="text" name="phone" /><br />
+    <label for="email">search readers by email:</label>
+    <input type="text" name="email" /><br />
+    <input type="submit" value="Go" />
+  </form>
+  <h1>Add Reader:</h1>
+  <form method="get" action="/backend/add_reader">
+    <label for="first_name">first name:</label>
+    <input type="text" name="first_name" /><br />
+    <label for="last_name">last name:</label>
+    <input type="text" name="last_name" /><br />
+    <label for="middle_name">middle name:</label>
+    <input type="text" name="middle_name" /><br />
+    <label for="address">address:</label>
+    <input type="text" name="address" /><br />
+    <label for="phone">phone:</label>
+    <input type="text" name="phone" /><br />
+    <label for="email">email:</label>
+    <input type="text" name="email" /><br />
+    <label for="valid_to">valid to:</label>
+    <input type="text" name="valid_to" /><br />
+    <input type="submit" value="Go" />
+  </form>
+  <h1>Delete Reader:</h1>
+  <form method="get" action="/backend/del_reader">
+    <label for="id">ID:</label>
+    <input type="text" name="id" /><br />
+    <input type="submit" value="Go" />
+  </form>
+  <p>
+  Json to Table here
+  </p>
+</body>
+</html>

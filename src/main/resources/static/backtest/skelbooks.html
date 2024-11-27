@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books - web skeleton report</title>
+</head>
+<body>
+  <h1>Find books:</h1>
+  <form method="get" action="/backend/get_books">
+    <label for="title">search books by title:</label>
+    <input type="text" name="title" /><br />
+    <label for="pattern">search books by pattern:</label>
+    <input type="text" name="pattern" /><br />
+    <input type="submit" value="Go" />
+  </form>
+  <h1>Delete book:</h1>
+  <form method="get" action="/backend/del_book">
+    <label for="id">ID:</label>
+    <input type="text" name="id" /><br />
+    <input type="submit" value="Go" />
+  </form>
+  <p>
+  Json to Table here
+  </p>
+</body>
+</html>

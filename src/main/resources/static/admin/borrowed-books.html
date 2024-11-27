@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Позичені книги - Книжковий рай</title>
+    <link rel="stylesheet" href="borrowed.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="/" class="logo">
+          <img src="/images/logo.png" alt="Книжковий рай" />
+          <span>Книжковий рай</span>
+        </a>
+        <div class="nav-links">
+          <a href="/admin/dashboard.html">Аналітика</a>
+          <a href="/admin/borrowed-books.html" class="active">Каталог</a>
+          <a href="/admin/book-management.html">Книги</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div class="datetime">
+          <span>12:29 PM</span>
+          <span>Жов 19, 2024</span>
+        </div>
+        <div class="user-profile">
+          <img src="/images/avatar.png" alt="User" />
+          <span>Alina</span>
+          <span class="role">Admin</span>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="borrowed">
+          Позичені книги
+        </button>
+        <button class="tab-btn" data-tab="overdue">
+          Прострочені позичальники
+        </button>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Шукати по назві" id="searchInput" />
+      </div>
+
+      <!-- Modal Section -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close-button" onclick="closeModal()">&times;</span>
+          <h2>Item Details</h2>
+          <table class="table-auto w-full border-collapse">
+            <thead>
+              <tr>
+                <th class="border px-4 py-2">Назва</th>
+                <th class="border px-4 py-2">Тип</th>
+                <th class="border px-4 py-2">Мова</th>
+                <th class="border px-4 py-2">Наявність</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border px-4 py-2" id="modal-title">
+                  Загублене місто Z
+                </td>
+                <td class="border px-4 py-2" id="modal-type">
+                  Пригодницький роман
+                </td>
+                <td class="border px-4 py-2" id="modal-language">Українська</td>
+                <td
+                  class="border px-4 py-2 text-red-500"
+                  id="modal-availability"
+                >
+                  з 21.02.2001 до 22.02.2001
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-container">
+        <table id="booksTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User ID</th>
+              <th>Amount</th>
+              <th>Due Date</th>
+              <th>Date & Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination" id="pagination">
+        <button class="pagination-dot active" data-page="1"></button>
+        <button class="pagination-dot" data-page="2"></button>
+        <button class="pagination-dot" data-page="3"></button>
+        <button class="pagination-dot" data-page="4"></button>
+      </div>
+    </main>
+
+    <script src="borrowed.js"></script>
+  </body>
+</html>

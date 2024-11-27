@@ -1,0 +1,394 @@
+:root {
+  --primary-color: #eb4a36;
+  --text-color: #1a202c;
+  --background-color: #f7fafc;
+  --card-background: #ffffff;
+  --border-color: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.navbar {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.nav-links a.active {
+  color: var(--primary-color);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.datetime {
+  text-align: right;
+}
+
+.date {
+  display: block;
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.user-profile {
+  text-align: right;
+}
+
+.role {
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+/* Main Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Stats Section */
+.stats-section {
+  margin-bottom: 3rem;
+}
+
+.stats-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.orange {
+  background-color: var(--primary-color);
+}
+
+.dot.black {
+  background-color: var(--text-color);
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Cards */
+.card {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Overdue Borrowers */
+.borrower-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.borrower-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--background-color);
+  border-radius: 8px;
+}
+
+.borrower-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.call-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+/* Library Stats */
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stat-row .number {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.stat-row .label {
+  color: #4a5568;
+}
+
+/* Popular Books */
+.popular-books {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.book-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--background-color);
+  border-radius: 8px;
+}
+
+.book-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.book-info .title {
+  font-weight: 500;
+}
+
+.book-info .id {
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+.info-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+/* Logout */
+.logout {
+  margin-top: 2rem;
+}
+
+.logout-button {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-left {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-right {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .datetime,
+  .user-profile {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .stats-item {
+    font-size: 0.875rem;
+  }
+
+  .stat-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Navbar Styles */
+.navbar {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.nav-links a.active {
+  color: var(--primary-color);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.datetime {
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.datetime span {
+  display: block;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-profile img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.role {
+  color: #666;
+  font-size: 0.75rem;
+}
+.borrower-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--background-color);
+  border-radius: 8px;
+  gap: 1rem;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+.book-details .book-title {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.book-details .book-id {
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+.book-details .days-overdue {
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}

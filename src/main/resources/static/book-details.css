@@ -1,0 +1,281 @@
+:root {
+  --primary-color: #eb4a36;
+  --text-color: #1a202c;
+  --light-gray: #f7fafc;
+  --border-color: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: var(--light-gray);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Navigation */
+.navbar {
+  background: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-profile img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* Back Link */
+.back-link {
+  margin-bottom: 2rem;
+}
+
+.back-link a {
+  color: #4a5568;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Book Details Layout */
+.book-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.book-main {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.author a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+/* Rating */
+.rating {
+  margin: 1rem 0;
+}
+
+.stars {
+  color: #f6ad55;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rating-value {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #48bb78;
+  border-radius: 50%;
+}
+
+/* Availability */
+.status {
+  display: inline-block;
+  background: #c6f6d5;
+  color: #2f855a;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  margin: 1rem 0;
+}
+
+/* Borrow Button */
+.borrow-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+
+/* Tabs */
+.tabs-header {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin: 2rem 0 1rem;
+}
+
+.tab {
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+.tab.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+/* Book Info Grid */
+.book-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+.orange-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Category Section */
+.category-section {
+  margin-top: 2rem;
+}
+
+.category-section h3 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.category-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.description {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+/* Author Sidebar */
+.author-sidebar {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.author-sidebar h2 {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.author-sidebar h3 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.author-sidebar p {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .book-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-right {
+    display: none;
+  }
+
+  .book-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .tabs-header {
+    flex-direction: column;
+  }
+
+  .tab {
+    width: 100%;
+    text-align: left;
+  }
+}
