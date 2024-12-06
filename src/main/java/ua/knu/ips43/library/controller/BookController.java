@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.sql.Date;
 import java.time.LocalDate;
 
 import ua.knu.ips43.library.model.Author;
 import ua.knu.ips43.library.model.Book;
-import ua.knu.ips43.library.model.BookRaw;
+import ua.knu.ips43.library.model.Book;
 import ua.knu.ips43.library.dao.BookDAO;
 
 @RestController
@@ -33,15 +34,27 @@ public class BookController {
     }
 
     @GetMapping(
+	value = "/backend/get_map_book_authors",
+	produces="application/json"
+    )
+    public Map<Integer, List<Integer>> getMapBookAuthors() {
+        return bookDAO.getMapBookAuthors();
+    }
+
+    @GetMapping(
 	value = "/backend/get_books",
 	produces="application/json"
     )
-    public List<BookRaw> getBooks(
+    public List<Book> getBooks(
+	@RequestParam(name = "id", required=false) String id,
+	@RequestParam(name = "author_id", required=false) String author_id,
 	@RequestParam(name = "title", required=false) String title,
 	@RequestParam(name = "pattern", required=false) String pattern
 	) {
-	//System.err.println("BookController: pattern="+ (pattern==null? "null":pattern));
-        return bookDAO.find(title, pattern);
+	//System.err.println("BookController: pattern="+ (pattern==null? "NULL":pattern));
+	//System.err.println("BookController: id="+ (id==null? "NULL":id));
+	//System.err.println("BookController: author_id="+ (author_id==null? "NULL":author_id));
+        return bookDAO.find(title, pattern, id, author_id);
     }
 
     @GetMapping(

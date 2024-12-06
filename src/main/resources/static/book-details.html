@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Книга Кайдашева сім'я - Книжковий рай</title>
+    <title>Про книгу - Книжковий рай</title>
     <link rel="stylesheet" href="book-details.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
   </head>
   <body>
     <nav class="navbar">
@@ -16,10 +17,10 @@
           </a>
         </div>
         <div class="nav-right">
-          <a href="/home">Головна</a>
-          <a href="/catalog">Каталог</a>
-          <a href="/about">Про нас</a>
-          <a href="/contacts">Контакти</a>
+          <a href="/">Головна</a>
+          <a href="/catalog.html">Каталог</a>
+          <a href="/about.html">Про нас</a>
+          <a href="/contacts.html">Контакти</a>
           <div class="user-profile">
             <img src="/images/avatar.png" alt="User" />
             <span>Alina</span>
@@ -30,15 +31,15 @@
 
     <main class="container">
       <div class="back-link">
-        <a href="/catalog">← назад</a>
+        <a href="/catalog.html">← назад</a>
       </div>
 
-      <div class="book-details">
+      <div id="app" class="book-details">
         <div class="book-main">
-          <h1>Книга Кайдашева сім'я</h1>
+          <h1>Книга {{book.title}}</h1>
 
-          <div class="author">
-            <a href="/author">Іван Нечуй-Левицький</a>
+          <div class="author" v-for="author in book.authors" v-bind:key="author.id" >
+	      <a v-bind:href="authorURL(author.id)">{{ author.full_name }}</a>;
           </div>
 
           <div class="rating">
@@ -57,10 +58,6 @@
               <span class="dot"></span>
               Література
             </span>
-            <span class="tag">
-              <span class="dot"></span>
-              2017 рік
-            </span>
           </div>
 
           <div class="availability">
@@ -72,22 +69,18 @@
           <div class="book-tabs">
             <div class="tabs-header">
               <button class="tab active">Опис</button>
-              <button class="tab">Переглянути 5 відгуків</button>
-              <button class="tab">Подробиці</button>
+              <button class="tab">Переглянути 0 відгуків</button>
+            </div>
+
+            <div class="category-section">
+              <h3>
+                Категорія: <a href="#" class="category-link">{{ book.genre }}</a>
+              </h3>
+              <div class="description">{{book.description}}</div>
             </div>
 
             <div class="tab-content">
               <div class="book-info-grid">
-                <div class="info-item">
-                  <span class="label">Дата публікації</span>
-                  <span class="value">2017</span>
-                </div>
-                <div class="info-item">
-                  <span class="label">Видавець</span>
-                  <span class="value">
-                    <a href="#" class="orange-link">Навчальна книга - Богдан</a>
-                  </span>
-                </div>
                 <div class="info-item">
                   <span class="label">Мова книги</span>
                   <span class="value">
@@ -95,30 +88,17 @@
                   </span>
                 </div>
                 <div class="info-item">
-                  <span class="label">Вік</span>
-                  <span class="value">Підліткам</span>
+                  <span class="label">Екземплярів</span>
+                  <span class="value">{{book.copies}}</span>
                 </div>
               </div>
-
-              <div class="category-section">
-                <h3>
-                  Категорія: <a href="#" class="category-link">Гумор, Сатира</a>
-                </h3>
-                <p class="description">
-                  «Кайдашева сім'я» - реалістична соціально-побутова повість
-                  класика української літератури Івана Нечуя-Левицького. У творі
-                  описано події, що відбувались у великій сільській родині
-                  Кайдашів. Конфлікти усередині сім'ї зображено з гумором, проте
-                  добре ставлення до заможних Кайдашів не перешкоджає автору
-                  безжально критикувати суспільний лад, спосіб організації
-                  громади, поведінку духівництва, які призводять до зубожіння
-                  людського духу.
-                </p>
-              </div>
             </div>
+
           </div>
         </div>
       </div>
     </main>
+    <script src="/js/book-common.js"></script>
+    <script src="/js/book.js"></script>
   </body>
 </html>

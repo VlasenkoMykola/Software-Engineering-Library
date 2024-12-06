@@ -4,6 +4,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 //import java.io.IOException;
 //import java.io.PrintWriter;
 //import java.sql.Connection;
@@ -15,6 +17,8 @@ import java.sql.SQLException;
 //import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Optional;
 //import java.sql.Date;
 //import java.sql.Timestamp;
@@ -85,7 +89,7 @@ public class AuthorDAO {
 	return results;
     }
 
-    public List<Author> find(String letter, String last_name, String pattern) {
+    public List<Author> find(String first_name, String middle_name, String last_name, String full_name, Integer id, String letter, String pattern) {
 	ArrayList<Object> params = new ArrayList<Object>();
 	StringBuilder sql = new StringBuilder("SELECT ");
 	//ArrayList<String> columns = new ArrayList<String>();
@@ -99,9 +103,25 @@ public class AuthorDAO {
 	    params.add(letter);
 	    //System.err.println("AuthorDAO: letter="+letter);
 	}
-	if (last_name != null && last_name!="") {
+	if (id != null) {
+	    where_conditions.add("id = ?");
+	    params.add(id);
+	}
+	if (first_name != null && !first_name.isEmpty()) {
+	    where_conditions.add("first_name = ?");
+	    params.add(first_name);
+	}
+	if (middle_name != null && !middle_name.isEmpty()) {
+	    where_conditions.add("middle_name = ?");
+	    params.add(middle_name);
+	}
+	if (last_name != null && !last_name.isEmpty()) {
 	    where_conditions.add("last_name = ?");
 	    params.add(last_name);
+	}
+	if (full_name != null && !full_name.isEmpty()) {
+	    where_conditions.add("full_name = ?");
+	    params.add(full_name);
 	}
 	if (pattern != null && pattern!="") {
 	    where_conditions.add("full_name LIKE ?");
@@ -128,6 +148,18 @@ public class AuthorDAO {
 	return results;
     }
 
+    public Map<Integer, String> getAuthorMapId2Name() {
+	SqlRowSet resultSet = jdbcTemplate.queryForRowSet(
+	    "SELECT id, full_name FROM Authors");
+	Map<Integer, String> valueMap = new HashMap<>();
+	while (resultSet.next()) {
+	    Integer id = resultSet.getInt("id");
+	    String name = resultSet.getString("full_name");
+	    valueMap.put(id, name);
+	}
+	return valueMap;
+    }
+
     public Integer getCount() {
 	List<Integer> results = jdbcTemplate.query(
 	    "SELECT COUNT(*) FROM Authors",
@@ -135,6 +167,12 @@ public class AuthorDAO {
 	return results.get(0);
     }
 
+    public Integer getCountByAuthor(Integer author_id) {
+	List<Integer> results = jdbcTemplate.query(
+	    "SELECT COUNT(*) FROM BookAuthors WHERE author_id=?",
+	    this::mapRowToCount, author_id);
+	return results.get(0);
+    }
 
     private Author mapRowToAuthor(ResultSet row, int rowNum)
 	throws SQLException{

@@ -12,10 +12,9 @@ import org.springframework.data.annotation.Id;
 public class Book {
     @Id
     private int id;
-    private String authors;
     private String title;
     //private String annotation;
-    //private String genres;
+    private String genres;
     private String description;
     private String lang;
     // private int year;

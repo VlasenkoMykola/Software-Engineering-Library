@@ -63,12 +63,12 @@ CREATE UNIQUE INDEX author2book ON BookAuthors(author_id, book_id);
 CREATE TABLE Readers (
        -- reader id is also used as library card id
        id SERIAL PRIMARY KEY,
-       first_name VARCHAR(255) NOT NULL,
-       middle_name VARCHAR(255) NOT NULL,
-       last_name VARCHAR(255) NOT NULL,
-       address VARCHAR(255),
-       phone VARCHAR(13),
-       email VARCHAR(255),
+       first_name TEXT NOT NULL,
+       middle_name TEXT NOT NULL,
+       last_name TEXT NOT NULL,
+       address TEXT,
+       phone TEXT,
+       email TEXT,
        registration_date TIMESTAMP NOT NULL,
        valid_to TIMESTAMP
 );

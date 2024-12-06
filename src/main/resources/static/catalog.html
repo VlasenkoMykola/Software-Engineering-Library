@@ -25,82 +25,89 @@
       </button>
     </nav>
 
-    <main class="catalog-container">
-      <!-- Sidebar Filters -->
-      <aside class="filters">
-        <div class="filter-section">
-          <div class="filter-header">
-            <h3>Тип продукту</h3>
-            <button class="toggle-btn">+</button>
-          </div>
-          <!-- Filter content goes here -->
-        </div>
+    <main class="vlasenko-form-container">
+      <!-- Main Forms -->
+      <div class="vlasenko-catalog-form">
+  <h1>Пошук автора:</h1>
+  <form method="get" action="/authors.html">
+    <label for="last_name">прізвище:</label>
+    <input type="text" name="last_name" /><br />
+    <label for="last_name">ім'я:</label>
+    <input type="text" name="last_name" /><br />
+    <label for="last_name">по батькові:</label>
+    <input type="text" name="last_name" /><br />
+    <label for="pattern">фрагмент повного імені:</label>
+    <input type="text" name="pattern" /><br />
+    <label for="letter">показати авторів на літеру:</label>
+    <select id="letter" name="letter" runat="server">
+	<option value=""></option>
+	<option value="#">#</option>
+	<option value="A">A</option>
+	<option value="B">B</option>
+	<option value="C">C</option>
+	<option value="D">D</option>
+	<option value="E">E</option>
+	<option value="H">H</option>
+	<option value="I">I</option>
+	<option value="J">J</option>
+	<option value="K">K</option>
+	<option value="L">L</option>
+	<option value="M">M</option>
+	<option value="O">O</option>
+	<option value="P">P</option>
+	<option value="R">R</option>
+	<option value="S">S</option>
+	<option value="T">T</option>
+	<option value="U">U</option>
+	<option value="W">W</option>
+	<option value="Z">Z</option>
+	<option value="А">А</option>
+	<option value="Б">Б</option>
+	<option value="В">В</option>
+	<option value="Г">Г</option>
+	<option value="Ґ">Ґ</option>
+	<option value="Д">Д</option>
+	<option value="Е">Е</option>
+	<option value="Є">Є</option>
+	<option value="Ж">Ж</option>
+	<option value="З">З</option>
+	<option value="И">И</option>
+	<option value="І">І</option>
+	<option value="Ї">Ї</option>
+	<option value="Й">Й</option>
+	<option value="К">К</option>
+	<option value="Л">Л</option>
+	<option value="М">М</option>
+	<option value="Н">Н</option>
+	<option value="О">О</option>
+	<option value="П">П</option>
+	<option value="Р">Р</option>
+	<option value="С">С</option>
+	<option value="Т">Т</option>
+	<option value="У">У</option>
+	<option value="Ф">Ф</option>
+	<option value="Х">Х</option>
+	<option value="Ц">Ц</option>
+	<option value="Ч">Ч</option>
+	<option value="Ш">Ш</option>
+	<option value="Щ">Щ</option>
+	<option value="Ю">Ю</option>
+	<option value="Я">Я</option>
+    </select><br />
+    <input type="submit" value="Знайти" />
+  </form>
+      </div>
 
-        <div class="filter-section">
-          <div class="filter-header">
-            <h3>Доступність</h3>
-            <button class="toggle-btn">+</button>
-          </div>
-          <!-- Filter content goes here -->
-        </div>
-      </aside>
-
-      <!-- Main Content -->
-      <div class="catalog-content">
-        <div class="catalog-header">
-          <div class="sort-section">
-            <select class="sort-dropdown">
-              <option value="alphabet">Сортувати за: алфавітом, A-Z</option>
-              <option value="reverse-alphabet">
-                Сортувати за: алфавітом, Z-A
-              </option>
-            </select>
-          </div>
-          <div class="results-info">Показано 1 - 12 із 26 результатів</div>
-          <div class="view-controls">
-            <button class="grid-view active">
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <rect x="3" y="3" width="7" height="7" />
-                <rect x="14" y="3" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" />
-              </svg>
-            </button>
-            <button class="list-view">
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <rect x="3" y="3" width="18" height="4" />
-                <rect x="3" y="10" width="18" height="4" />
-                <rect x="3" y="17" width="18" height="4" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="book-grid">
-          <!-- Book Card -->
-          <article class="book-card">
-            <h3>The Great Gatsby</h3>
-            <p class="author">F. Scott Fitzgerald</p>
-            <p class="genre">Genre: Fiction, Classics</p>
-            <p class="availability">Copies Available: 2</p>
-            <span class="status available">Available</span>
-          </article>
-
-          <!-- Book Card -->
-          <article class="book-card">
-            <h3>1984</h3>
-            <p class="author">George Orwell</p>
-            <p class="genre">Genre: Fiction, Dystopian</p>
-            <p class="availability">Copies Available: 0</p>
-            <span class="status checked-out">Checked Out</span>
-          </article>
-        </div>
-
-        <div class="pagination">
-          <button class="active">1</button>
-          <button>2</button>
-          <button>3</button>
-        </div>
+      <!-- Main Forms -->
+      <div class="vlasenko-catalog-form">
+	<h1>Пошук книги:</h1>
+	<form method="get" action="/books.html">
+	  <label for="title">точна назва</label>
+	  <input type="text" name="title" /><br />
+	  <label for="pattern">фрагмент назви:</label>
+	  <input type="text" name="pattern" /><br />
+	  <input type="submit" value="Знайти" />
+	</form>
       </div>
     </main>
 
@@ -115,13 +122,13 @@
         </div>
         <div class="footer-links">
           <a href="/">Головна</a>
-          <a href="/about">Про нас</a>
-          <a href="/catalog">Каталог</a>
-          <a href="/contacts">Контакти</a>
+          <a href="/about.html">Про нас</a>
+          <a href="/catalog.html">Каталог</a>
+          <a href="/contacts.html">Контакти</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2022 Книжковий рай. Всі права захищено</p>
+        <p>© 2024 Книжковий рай. Всі права захищено</p>
       </div>
     </footer>
   </body>

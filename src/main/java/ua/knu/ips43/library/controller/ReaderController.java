@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -29,6 +31,15 @@ public class ReaderController {
     )
     public Integer getReaderCount() {
         return readerDAO.getCount();
+    }
+
+    @GetMapping(
+	value = "/backend/get_reader_map_id_to_name",
+	produces="application/json"
+    )
+    public Map<Integer, String> getReaderMapId2Name(
+	) {
+	return readerDAO.getReaderMapId2Name();
     }
 
     @GetMapping(

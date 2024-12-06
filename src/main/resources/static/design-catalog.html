@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Каталог - Книжковий рай</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/" class="logo">
+        <img src="/images/logo.png" alt="Книжковий рай лого" />
+        <span>Книжковий рай</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Головна</a>
+        <a href="/catalog.html">Каталог</a>
+        <a href="/login.html">Увійти</a>
+        <a href="/signup.html" class="register-btn">Реєстрація</a>
+      </div>
+      <button class="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <main class="catalog-container">
+      <!-- Sidebar Filters -->
+      <aside class="filters">
+        <div class="filter-section">
+          <div class="filter-header">
+            <h3>Тип продукту</h3>
+            <button class="toggle-btn">+</button>
+          </div>
+          <!-- Filter content goes here -->
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-header">
+            <h3>Доступність</h3>
+            <button class="toggle-btn">+</button>
+          </div>
+          <!-- Filter content goes here -->
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="catalog-content">
+        <div class="catalog-header">
+          <div class="sort-section">
+            <select class="sort-dropdown">
+              <option value="alphabet">Сортувати за: алфавітом, A-Z</option>
+              <option value="reverse-alphabet">
+                Сортувати за: алфавітом, Z-A
+              </option>
+            </select>
+          </div>
+          <div class="results-info">Показано 1 - 12 із 26 результатів</div>
+          <div class="view-controls">
+            <button class="grid-view active">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+              </svg>
+            </button>
+            <button class="list-view">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="4" />
+                <rect x="3" y="10" width="18" height="4" />
+                <rect x="3" y="17" width="18" height="4" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="book-grid">
+          <!-- Book Card -->
+          <article class="book-card">
+            <h3>The Great Gatsby</h3>
+            <p class="author">F. Scott Fitzgerald</p>
+            <p class="genre">Genre: Fiction, Classics</p>
+            <p class="availability">Copies Available: 2</p>
+            <span class="status available">Available</span>
+          </article>
+
+          <!-- Book Card -->
+          <article class="book-card">
+            <h3>1984</h3>
+            <p class="author">George Orwell</p>
+            <p class="genre">Genre: Fiction, Dystopian</p>
+            <p class="availability">Copies Available: 0</p>
+            <span class="status checked-out">Checked Out</span>
+          </article>
+        </div>
+
+        <div class="pagination">
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="/images/logo.png" alt="Книжковий рай лого" />
+          <p>
+            Зручний пошук, найновіші надходження, статистика бібліотеки та
+            багато іншого!
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="/">Головна</a>
+          <a href="/about.html">Про нас</a>
+          <a href="/catalog.html">Каталог</a>
+          <a href="/contacts.html">Контакти</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Книжковий рай. Всі права захищено</p>
+      </div>
+    </footer>
+  </body>
+</html>

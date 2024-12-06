@@ -20,6 +20,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 //import java.time.LocalDateTime;
 
+import ua.knu.ips43.library.model.Book;
 import ua.knu.ips43.library.model.Copy;
 import ua.knu.ips43.library.model.CopyStatus;
 
@@ -80,12 +81,42 @@ public class CopyDAO {
 	return results;
     }
 
+    public Integer getCount(Integer book_id, Integer reader_id, String status, Date book_or_lend_from, Date book_or_lend_to) {
+	SQLQuery query = queryArgs(null, book_id, reader_id, status, book_or_lend_from, book_or_lend_to, Select.COUNT);
+	List<Integer> results = jdbcTemplate.query(
+	    query.sql,
+	    this::mapRowToCount,
+	    query.params.toArray());
+	return results.get(0);
+    }
+
     public List<Copy> find(Integer id, Integer book_id, Integer reader_id, String status, Date book_or_lend_from, Date book_or_lend_to) {
+	SQLQuery query = queryArgs(id, book_id, reader_id, status, book_or_lend_from, book_or_lend_to, Select.ALL);
+	return findQuery(query);
+    }
+
+    public List<Copy> findQuery(SQLQuery query) {
+	return jdbcTemplate.query(
+	    query.sql,
+	    this::mapRowToCopy,
+	    query.params.toArray());
+    }
+
+    public SQLQuery queryArgs(Integer id, Integer book_id, Integer reader_id, String status, Date book_or_lend_from, Date book_or_lend_to, Select select) {
 	ArrayList<Object> params = new ArrayList<Object>();
 	StringBuilder sql = new StringBuilder("SELECT ");
 	//ArrayList<String> columns = new ArrayList<String>();
 	ArrayList<String> where_conditions = new ArrayList<String>();
-	sql.append(" id, book_id, reader_id, status, status_change, book_or_lend_from, book_or_lend_to");
+
+	sql.append(
+	    switch (select) {
+	    case BOOK_ID -> " book_id";
+	    case READER_ID -> " reader_id";
+	    case COUNT -> " COUNT(*)";
+	    default -> " id, book_id, reader_id, status, status_change, book_or_lend_from, book_or_lend_to";
+	    }
+	);
+	//sql.append(" id, book_id, reader_id, status, status_change, book_or_lend_from, book_or_lend_to");
 	//columns.add("");
 	//sql.append(String.join(", ", columns));
 	sql.append(" FROM Copies");
@@ -117,20 +148,9 @@ public class CopyDAO {
 	    sql.append(" WHERE ");
 	    sql.append(String.join(" AND ", where_conditions));
 	}
-	sql.append(" ORDER BY id");
+	//sql.append(" ORDER BY id");
 	//System.err.println("CopyDAO: sql="+sql.toString());
-	List<Copy> results = jdbcTemplate.query(
-	    sql.toString(),
-	    this::mapRowToCopy,
-	    params.toArray());
-	return results;
-    }
-
-    public Integer getCount() {
-	List<Integer> results = jdbcTemplate.query(
-	    "SELECT COUNT(*) FROM Copies",
-	    this::mapRowToCount);
-	return results.get(0);
+	return new SQLQuery(sql.toString(), params);
     }
 
     private Copy mapRowToCopy(ResultSet row, int rowNum)
@@ -156,4 +176,10 @@ public class CopyDAO {
 	return row.getInt("id");
     }
 
+    public enum Select {
+	ALL,
+	BOOK_ID,
+	READER_ID,
+	COUNT
+    }
 }

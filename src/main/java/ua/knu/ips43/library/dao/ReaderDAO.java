@@ -4,6 +4,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 //import java.io.IOException;
 //import java.io.PrintWriter;
 //import java.sql.Connection;
@@ -14,6 +16,8 @@ import java.sql.SQLException;
 //import java.sql.PreparedStatement;
 //import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Optional;
 //import java.sql.Date;
@@ -119,6 +123,20 @@ public class ReaderDAO {
 	    "SELECT COUNT(*) FROM Readers",
 	    this::mapRowToCount);
 	return results.get(0);
+    }
+
+    public Map<Integer, String> getReaderMapId2Name() {
+	SqlRowSet resultSet = jdbcTemplate.queryForRowSet(
+	    "SELECT id, first_name, middle_name, last_name FROM Readers");
+	Map<Integer, String> valueMap = new HashMap<>();
+	while (resultSet.next()) {
+	    Integer id = resultSet.getInt("id");
+	    String first_name = resultSet.getString("first_name");
+	    String middle_name = resultSet.getString("middle_name");
+	    String last_name = resultSet.getString("last_name");
+	    valueMap.put(id, first_name + ' ' + middle_name + ' ' + last_name);
+	}
+	return valueMap;
     }
 
     private Reader mapRowToReader(ResultSet row, int rowNum)

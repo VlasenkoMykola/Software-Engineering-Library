@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Про автора - Книжковий рай</title>
+    <link rel="stylesheet" href="book-details.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-left">
+          <a href="/" class="logo">
+            <img src="/images/logo.png" alt="Книжковий рай" />
+            <span>Книжковий рай</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="/">Головна</a>
+          <a href="/catalog.html">Каталог</a>
+          <a href="/about.html">Про нас</a>
+          <a href="/contacts.html">Контакти</a>
+          <div class="user-profile">
+            <img src="/images/avatar.png" alt="User" />
+            <span>Alina</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="back-link">
+        <a href="/authors.html">← назад</a>
+      </div>
+
+      <div id="app" class="book-details">
+        <div class="book-main">
+          <h1>{{ author.full_name }}</h1>
+	  <p class="genre">{{ author.description }}</p>
+          <div class="author">
+            <a v-bind:href="booksURL(author.id)">книги: ({{ bookCount }})</a>
+          </div>
+
+        </div>
+      </div>
+    </main>
+    <script src="/js/author.js"></script>
+  </body>
+</html>

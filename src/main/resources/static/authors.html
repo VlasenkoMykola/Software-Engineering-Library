@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Автори - Книжковий рай</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/" class="logo">
+        <img src="/images/logo.png" alt="Книжковий рай лого" />
+        <span>Книжковий рай</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Головна</a>
+        <a href="/catalog.html">Каталог</a>
+        <a href="/login.html">Увійти</a>
+        <a href="/signup.html" class="register-btn">Реєстрація</a>
+      </div>
+      <button class="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <main class="catalog-container">
+      <!-- Main Content -->
+      <div id="app" class="catalog-content">
+        <div class="catalog-header">
+          <div class="sort-section">
+            <select class="sort-dropdown">
+              <option value="alphabet" v-on:click="sortAZ()">Сортувати за: алфавітом, A-Z</option>
+              <option value="reverse-alphabet" v-on:click="sortZA()">Сортувати за: алфавітом, Z-A</option>
+            </select>
+          </div>
+          <div class="results-info">Показано 1 - {{ resultsTo }} із {{ resultsTo }} результатів</div>
+          <div class="view-controls">
+            <button class="grid-view active">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+              </svg>
+            </button>
+            <button class="list-view">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="4" />
+                <rect x="3" y="10" width="18" height="4" />
+                <rect x="3" y="17" width="18" height="4" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="book-grid">
+
+          <!-- Book Card -->
+          <article class="book-card" v-for="author in sortedAuthors" v-bind:key="author.id">
+            <h3></h3>
+            <p class="author"><a v-bind:href="authorURL(author.id)">{{ author.full_name }} [debug: id={{ author.id }}]</a></p>
+	    <p class="genre">{{ author.description }}</p>
+          </article>
+
+        </div>
+        <div class="pagination">
+          <button class="active">1</button>
+<!--
+          <button>2</button>
+          <button>3</button>
+-->
+        </div>
+      </div>
+    </main>
+    <script src="/js/authors.js"></script>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="/images/logo.png" alt="Книжковий рай лого" />
+          <p>
+            Зручний пошук, найновіші надходження, статистика бібліотеки та
+            багато іншого!
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="/">Головна</a>
+          <a href="/about.html">Про нас</a>
+          <a href="/catalog.html">Каталог</a>
+          <a href="/contacts.html">Контакти</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Книжковий рай. Всі права захищено</p>
+      </div>
+    </footer>
+  </body>
+</html>
